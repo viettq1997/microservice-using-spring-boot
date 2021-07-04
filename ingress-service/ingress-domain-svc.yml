@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dcb-subdomain-ingress
+spec:
+  rules:
+    - host: user.dcbapp.com
+      http:
+        paths:
+          - path: /users
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service-svc
+                port:
+                  number: 80
+    - host: department.dcbapp.com
+      http:
+        paths:
+          - path: /departments
+            pathType: Prefix
+            backend:
+              service:
+                name: department-service-svc
+                port:
+                  number: 80
